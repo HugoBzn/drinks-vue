@@ -1,8 +1,10 @@
-<script setup></script>
+<script setup>
+import Header from './components/Header.vue';
+</script>
 
 <template>
   <div>
-    <h1>Desde Pinia 🍍</h1>
+    <Header />
   </div>
 </template>
 
