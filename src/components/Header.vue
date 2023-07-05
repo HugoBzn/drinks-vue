@@ -7,6 +7,8 @@ const route = useRoute();
 const store = useBebidasStore();
 
 const homePage = computed(() => route.name === 'home');
+const textColorHome = computed(() => route.name === 'home');
+const textColorFavorites = computed(() => route.name === 'favorites');
 
 const handleSubmit = () => {
   // TODO: Validacion
@@ -28,14 +30,16 @@ const handleSubmit = () => {
           <nav class="flex gap-4">
             <RouterLink
               :to="{ name: 'home' }"
-              class="text-white uppercase font-bold"
+              class="uppercase font-bold"
+              :class="{ textColorHomeWhite: textColorFavorites }"
               active-class="text-orange-500"
             >
               Home
             </RouterLink>
             <RouterLink
               :to="{ name: 'favorites' }"
-              class="text-white uppercase font-bold"
+              class="uppercase font-bold"
+              :class="{ textColorFavoritesWhite: textColorHome }"
               active-class="text-orange-500"
             >
               Favorites
@@ -97,5 +101,12 @@ const handleSubmit = () => {
   background-image: url('/img/bg.webp');
   background-size: cover;
   background-position: center;
+}
+
+.textColorHomeWhite {
+  color: white;
+}
+.textColorFavoritesWhite {
+  color: white;
 }
 </style>
