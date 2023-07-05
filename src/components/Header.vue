@@ -51,6 +51,7 @@ const homePage = computed(() => route.name === 'home');
               type="text"
               class="p-3 w-full rounded-lg focus:outline-none"
               placeholder="Nombre o Ingrediente: Ej. Vodka, Tequila, etc"
+              v-model="store.busqueda.nombre"
             />
           </div>
 
@@ -58,7 +59,11 @@ const homePage = computed(() => route.name === 'home');
             <label for="categoria" class="block text-white uppercase font-extrabold text-lg">
               Categoría
             </label>
-            <select id="categoria" class="p-3 w-full rounded-lg focus:outline-none">
+            <select
+              id="categoria"
+              class="p-3 w-full rounded-lg focus:outline-none"
+              v-model="store.busqueda.categoria"
+            >
               <option value="">-- Seleccione --</option>
               <option
                 v-for="categoria in store.categorias"
