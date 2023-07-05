@@ -10,15 +10,21 @@ export const useBebidasStore = defineStore('bebidas', () => {
     categoria: '',
   });
 
-  onMounted(async function () {
-    const { data: { drinks } } = await APIService.obtenerCategorias();
+  const recetas = ref([]);
 
+  // Si creamos una función que modifica el state, tienes que crear una function
+  onMounted(async function () {
+    const {
+      data: { drinks },
+    } = await APIService.obtenerCategorias();
     categorias.value = drinks;
   });
 
-  // Si creamos una función que modifica el state, tienes que crear una function
-  function obtenerRecetas() {
-    console.log('Consultando API...');
+  async function obtenerRecetas() {
+    const {
+      data: { drinks },
+    } = await APIService.buscarRecetas(busqueda);
+    recetas.value = drinks;
   }
 
   return {
