@@ -1,6 +1,6 @@
 import { onMounted, ref, reactive } from 'vue';
 import { defineStore } from 'pinia';
-import axios from 'axios';
+import APIService from '../services/APIService';
 
 export const useBebidasStore = defineStore('bebidas', () => {
   const categorias = ref([]);
@@ -10,16 +10,20 @@ export const useBebidasStore = defineStore('bebidas', () => {
     categoria: '',
   });
 
-  onMounted(async () => {
-    const {
-      data: { drinks },
-    } = await axios('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+  onMounted(async function () {
+    const { data: { drinks } } = await APIService.obtenerCategorias();
 
     categorias.value = drinks;
   });
 
+  // Si creamos una función que modifica el state, tienes que crear una function
+  function obtenerRecetas() {
+    console.log('Consultando API...');
+  }
+
   return {
     categorias,
     busqueda,
+    obtenerRecetas,
   };
 });

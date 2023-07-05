@@ -7,6 +7,11 @@ const route = useRoute();
 const store = useBebidasStore();
 
 const homePage = computed(() => route.name === 'home');
+
+const handleSubmit = () => {
+  // TODO: Validacion
+  store.obtenerRecetas();
+};
 </script>
 
 <template>
@@ -39,8 +44,9 @@ const homePage = computed(() => route.name === 'home');
         </div>
 
         <form
-          class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
           v-if="homePage"
+          class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
+          @submit.prevent="handleSubmit"
         >
           <div class="space-y-4">
             <label for="ingrediente" class="block text-white uppercase font-extrabold text-lg">
