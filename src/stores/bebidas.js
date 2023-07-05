@@ -7,13 +7,12 @@ export const useBebidasStore = defineStore('bebidas', () => {
   const modalStore = useModalStore();
 
   const categorias = ref([]);
-
   const busqueda = reactive({
     nombre: '',
     categoria: '',
   });
-
   const recetas = ref([]);
+  const receta = ref({});
 
   // Si creamos una función que modifica el state, tienes que crear una "function"
   onMounted(async function () {
@@ -34,6 +33,7 @@ export const useBebidasStore = defineStore('bebidas', () => {
     const {
       data: { drinks },
     } = await APIService.buscarReceta(id);
+    receta.value = drinks[0];
     modalStore.handleClickModal();
   }
 
@@ -41,6 +41,7 @@ export const useBebidasStore = defineStore('bebidas', () => {
     categorias,
     busqueda,
     recetas,
+    receta,
     obtenerRecetas,
     seleccionarBebida,
   };
