@@ -1,5 +1,13 @@
 # drinks-vue
 
+This app works as a drinks recipes consultant, you can search for cocktail or some ingredient and this app can show you the recipe, their ingredients and their instructions. 🍸️🍻
+
+This App uses an API from TheCocktailDB. https://www.thecocktaildb.com/
+
+This idea is from a course made it by Juan de la Torre (Udemy) 🤓.
+
+## Vue 3 + Vite
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
