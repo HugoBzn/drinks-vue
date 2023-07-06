@@ -31,14 +31,14 @@ const handleSubmit = () => {
               class="uppercase font-bold"
               active-class="text-orange-500"
             >
-              Home
+              Inicio
             </RouterLink>
             <RouterLink
               :to="{ name: 'favorites' }"
               class="uppercase font-bold"
               active-class="text-orange-500"
             >
-              Favorites
+              Favoritos
             </RouterLink>
           </nav>
         </div>
