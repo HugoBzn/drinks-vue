@@ -3,17 +3,19 @@ import { Dialog, DialogPanel, DialogTitle, TransitionChild, TransitionRoot } fro
 
 import { useModalStore } from '../stores/modal';
 import { useBebidasStore } from '../stores/bebidas';
+import { useFavoritosStore } from '../stores/favoritos';
 
-const modalStore = useModalStore();
-const bebidasStore = useBebidasStore();
+const modal = useModalStore();
+const bebidas = useBebidasStore();
+const favoritos = useFavoritosStore();
 
 const formatearIngredientes = () => {
   const ingredientesDiv = document.createElement('DIV');
 
   for (let i = 1; i < 15; i++) {
-    if (bebidasStore.receta[`strIngredient${i}`]) {
-      const ingrediente = bebidasStore.receta[`strIngredient${i}`];
-      const cantidad = bebidasStore.receta[`strMeasure${i}`];
+    if (bebidas.receta[`strIngredient${i}`]) {
+      const ingrediente = bebidas.receta[`strIngredient${i}`];
+      const cantidad = bebidas.receta[`strMeasure${i}`];
 
       const ingredienteCantidad = document.createElement('P');
       ingredienteCantidad.classList.add('text-lg', 'text-gray-500');
@@ -27,8 +29,8 @@ const formatearIngredientes = () => {
 </script>
 
 <template>
-  <TransitionRoot as="template" :show="modalStore.modal">
-    <Dialog as="div" class="relative z-10" @close="modalStore.handleClickModal()">
+  <TransitionRoot as="template" :show="modal.modal">
+    <Dialog as="div" class="relative z-10" @close="modal.handleClickModal()">
       <TransitionChild
         as="template"
         enter="ease-out duration-300"
@@ -59,12 +61,12 @@ const formatearIngredientes = () => {
               <div>
                 <div class="mt-3">
                   <DialogTitle as="h3" class="text-gray-900 text-4xl font-extrabold my-5">
-                    {{ bebidasStore.receta.strDrink }}
+                    {{ bebidas.receta.strDrink }}
                   </DialogTitle>
 
                   <img
-                    :src="bebidasStore.receta.strDrinkThumb"
-                    :alt="'Imagen de ' + bebidasStore.receta.strDrink"
+                    :src="bebidas.receta.strDrinkThumb"
+                    :alt="'Imagen de ' + bebidas.receta.strDrink"
                     class="rounded m-auto w-96"
                   />
 
@@ -78,16 +80,24 @@ const formatearIngredientes = () => {
                     Instrucciones
                   </DialogTitle>
 
-                  <p class="text-xl text-gray-500">{{ bebidasStore.receta.strInstructions }}</p>
+                  <p class="text-xl text-gray-500">{{ bebidas.receta.strInstructions }}</p>
                 </div>
               </div>
               <div class="mt-5 sm:mt-6 flex justify-between gap-4">
                 <button
                   type="button"
                   class="w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-500"
-                  @click="modalStore.handleClickModal()"
+                  @click="modal.handleClickModal()"
                 >
                   Cerrar
+                </button>
+
+                <button
+                  type="button"
+                  class="w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-500"
+                  @click="favoritos.handleClickFavorito()"
+                >
+                  Agregar a favoritos
                 </button>
               </div>
             </DialogPanel>
